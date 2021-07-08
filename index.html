@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>localStorage</title>
+</head>
+<body>
+	<form>
+		<input type="number" name="" class="userInput">
+		<input type="submit" name="" placeholder="submit" class="submit">
+	</form>
+	<script type="text/javascript">
+		const _submit = document.querySelector('.submit');
+		const input = document.querySelector('.userInput')
+
+		class Saver{
+			getUserInput(){
+				if(input.value =='' || input.value == ' '){
+					console.log(empty);
+				}else{
+					const input1 = input.value;
+					this.saveToLocalStorage(input1);
+				}
+			}
+			saveToLocalStorage(input1){
+				let inputs;
+				if (localStorage.getItem("inputs") === null){
+					inputs = [];
+				}else{
+					inputs = JSON.parse(localStorage.getItem('inputs'));
+				}
+				inputs.push(input1);
+				localStorage.setItem('inputs', JSON.stringify(inputs));
+			}
+		}
+
+		let saver = new Saver();
+
+		_submit.addEventListener('click',()=>{
+			saver.getUserInput();
+		});
+		localStorage.clear()
+
+
+	</script>
+</body>
+</html>
